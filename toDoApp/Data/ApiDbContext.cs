@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using toDoApp.Models;
 
 namespace toDoApp.Data
 {
-    public class ApiDbContext : DbContext
+    public class ApiDbContext : IdentityDbContext
     {
         public ApiDbContext(DbContextOptions options) : base(options)
         {

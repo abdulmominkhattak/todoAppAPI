@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using toDoApp.Data;
@@ -8,6 +10,7 @@ namespace toDoApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
     public class ToDoController : ControllerBase
     {
         private readonly ApiDbContext _dbContext;
@@ -93,7 +96,7 @@ namespace toDoApp.Controllers
                 _dbContext.items.Remove(exits);
                 await _dbContext.SaveChangesAsync();
 
-                return Ok(exits);
+                return Ok(exits); 
 
             }
             return NotFound();
